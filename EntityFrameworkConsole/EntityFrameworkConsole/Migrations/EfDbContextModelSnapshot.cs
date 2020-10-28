@@ -24,12 +24,6 @@ namespace EntityFrameworkConsole.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AnotherDescription")
-                        .IsRequired();
-
-                    b.Property<string>("AnotherTitle")
-                        .IsRequired();
-
                     b.Property<string>("Title")
                         .IsRequired();
 

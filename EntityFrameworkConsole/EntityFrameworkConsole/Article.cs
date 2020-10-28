@@ -12,7 +12,10 @@ namespace EntityFrameworkConsole
 
         [Required]
         public string Title { get; set; }
-  
+
+        [Required]
+        public string AnotherTitle { get; set; }
+
         [Required]
         public string AnotherDescription { get; set; }
     }

@@ -14,7 +14,18 @@ namespace EntityFrameworkConsole
 
             base.OnConfiguring(optionsBuilder);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<Article>()
+                .HasOne(x => x.Author)
+                .WithMany(x => x.Articles)
+                .HasForeignKey(x => x.AuthorId);
+        }
+
         public DbSet<Article> Articles { get; set; }
 
+        public DbSet<Author> Authors { get; set; }
     }
 }

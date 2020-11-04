@@ -43,5 +43,7 @@ namespace EntityFrameworkConsole
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<Author> Authors { get; set; }
+
+        public DbSet<ArticleEditor> ArticleEditor { get; set; }
     }
 }

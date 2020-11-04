@@ -9,16 +9,19 @@ namespace EntityFrameworkConsole
         {
 
 
-            //using (var context = new EfDbContext())
-            //{
-            //    var town = new Article()
-            //    {
-            //        Name = "London"
-            //    };
+            using (var context = new EfDbContext())
+            {
+
+                var a = context.Articles.Find(2);
+
+                a.Author = new Author()
+                {
+                    Name = "mmmm"
+                };
 
 
-            //    context.SaveChanges();
-            //}
+                context.SaveChanges();
+            }
         }
     }
 }

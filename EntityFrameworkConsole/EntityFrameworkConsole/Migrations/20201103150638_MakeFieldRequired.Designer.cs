@@ -3,14 +3,16 @@ using EntityFrameworkConsole;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EntityFrameworkConsole.Migrations
 {
     [DbContext(typeof(EfDbContext))]
-    partial class EfDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201103150638_MakeFieldRequired")]
+    partial class MakeFieldRequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,19 +38,6 @@ namespace EntityFrameworkConsole.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("EntityFrameworkConsole.ArticleEditor", b =>
-                {
-                    b.Property<int>("ArticleId");
-
-                    b.Property<int>("EditorId");
-
-                    b.HasKey("ArticleId", "EditorId");
-
-                    b.HasIndex("EditorId");
-
-                    b.ToTable("ArticleEditor");
-                });
-
             modelBuilder.Entity("EntityFrameworkConsole.Author", b =>
                 {
                     b.Property<int>("Id")
@@ -63,38 +52,11 @@ namespace EntityFrameworkConsole.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("EntityFrameworkConsole.Editor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Editor");
-                });
-
             modelBuilder.Entity("EntityFrameworkConsole.Article", b =>
                 {
                     b.HasOne("EntityFrameworkConsole.Author", "Author")
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EntityFrameworkConsole.ArticleEditor", b =>
-                {
-                    b.HasOne("EntityFrameworkConsole.Article", "Article")
-                        .WithMany("ArticlesEditors")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EntityFrameworkConsole.Editor", "Editor")
-                        .WithMany("ArticlesEditors")
-                        .HasForeignKey("EditorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

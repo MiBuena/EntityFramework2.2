@@ -5,17 +5,13 @@ using System.Text;
 
 namespace EntityFrameworkConsole
 {
-    public class Article
+    public class Editor
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Title { get; set; }
-
-        public int AuthorId { get; set; }
-
-        public Author Author { get; set; }
+        public string Name { get; set; }
 
         public List<ArticleEditor> ArticlesEditors { get; set; } = new List<ArticleEditor>();
     }

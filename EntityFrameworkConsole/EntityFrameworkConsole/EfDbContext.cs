@@ -22,6 +22,22 @@ namespace EntityFrameworkConsole
                 .HasOne(x => x.Author)
                 .WithMany(x => x.Articles)
                 .HasForeignKey(x => x.AuthorId);
+
+            modelBuilder
+                .Entity<ArticleEditor>()
+                .HasKey(x => new { x.ArticleId, x.EditorId });
+
+            modelBuilder
+                .Entity<ArticleEditor>()
+                .HasOne(x => x.Article)
+                .WithMany(x => x.ArticlesEditors)
+                .HasForeignKey(x => x.ArticleId);
+
+            modelBuilder
+                .Entity<ArticleEditor>()
+                .HasOne(x => x.Editor)
+                .WithMany(x => x.ArticlesEditors)
+                .HasForeignKey(x => x.EditorId);
         }
 
         public DbSet<Article> Articles { get; set; }
